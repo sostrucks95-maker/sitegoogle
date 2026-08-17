@@ -10,15 +10,15 @@ function Hero() {
       <div className="hero__media">
         <img
           className="hero__img"
-          src="/assets/logo.png"
-          alt="SOS Truck — guincho para caminhões"
-          width={800}
-          height={800}
+          src="/assets/hero-truck.jpg"
+          alt="Caminhão-guincho da SOS Truck pronto para atendimento"
+          width={1200}
+          height={675}
           loading="eager"
           decoding="async"
           fetchPriority="high"
         />
-        <div className="hero__glow" aria-hidden="true"></div>
+        <div className="hero__gradient-top" aria-hidden="true"></div>
         <div className="hero__gradient-bottom" aria-hidden="true"></div>
       </div>
 

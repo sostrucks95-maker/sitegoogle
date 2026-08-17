@@ -10,52 +10,52 @@
 }
 
 .hero__media {
+  /* "Vaza" pra fora da coluna central (page-shell) e cobre a largura
+     inteira da viewport, mesmo quando a tela é mais larga que os 520px
+     do shell. Requer position: relative no próprio elemento. */
   position: relative;
-  width: 100%;
-  height: 380px;
+  left: 50%;
+  right: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 440px;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(
-    ellipse at center,
-    var(--cor-preto-secundario) 0%,
-    var(--cor-fundo) 70%
-  );
+  background: var(--cor-fundo);
 }
 
 .hero__img {
-  position: relative;
-  z-index: 2;
-  width: 88%;
-  max-width: 420px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% 40%;
+  display: block;
 }
 
-.hero__gradient-bottom {
+.hero__gradient-top {
   position: absolute;
-  z-index: 3;
-  inset: auto 0 0 0;
-  height: 70px;
+  z-index: 2;
+  inset: 0 0 auto 0;
+  height: 140px;
   background: linear-gradient(
     180deg,
-    rgba(13, 13, 13, 0) 0%,
-    rgba(13, 13, 13, 0.7) 55%,
-    #0d0d0d 100%
+    rgba(13, 13, 13, 0.75) 0%,
+    rgba(13, 13, 13, 0.25) 55%,
+    rgba(13, 13, 13, 0) 100%
   );
   pointer-events: none;
 }
 
-.hero__glow {
+.hero__gradient-bottom {
   position: absolute;
-  z-index: 1;
-  inset: 0;
-  background: radial-gradient(
-    280px 280px at 50% 50%,
-    var(--cor-vermelho-sombra),
-    transparent 72%
+  z-index: 2;
+  inset: auto 0 0 0;
+  height: 140px;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 13, 13, 0) 0%,
+    rgba(13, 13, 13, 0.75) 55%,
+    #0d0d0d 100%
   );
   pointer-events: none;
 }
@@ -63,7 +63,7 @@
 .hero__content {
   position: relative;
   z-index: 2;
-  margin-top: -8px;
+  margin-top: -36px;
   padding: 0 18px;
   display: flex;
   flex-direction: column;

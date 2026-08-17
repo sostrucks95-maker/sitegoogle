@@ -12,8 +12,8 @@ function Hero() {
           className="hero__img"
           src="/assets/hero-truck.jpg"
           alt="Caminhão-guincho da SOS Truck pronto para atendimento"
-          width={1200}
-          height={675}
+          width={900}
+          height={1200}
           loading="eager"
           decoding="async"
           fetchPriority="high"

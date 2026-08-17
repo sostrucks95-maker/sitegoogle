@@ -8,7 +8,7 @@
 
 .final-cta__panel {
   margin: 0 16px;
-  padding: 28px 20px;
+  padding: 28px 16px;
   background: var(--cor-card);
   border: 1px solid var(--cor-cinza-borda);
   border-radius: 16px;
@@ -66,20 +66,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  width: 72%;
-  height: 58px;
+  gap: 10px;
+  text-align: center;
+  width: 100%;
+  max-width: 340px;
+  min-height: 58px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 10px 16px;
   border-radius: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   background: linear-gradient(180deg, var(--cor-vermelho) 0%, var(--cor-vermelho-escuro) 100%);
   color: var(--cor-branco);
   font-family: var(--fonte-titulo);
   font-weight: 700;
-  font-size: clamp(15px, 4.6vw, 22px);
+  font-size: clamp(15px, 4.4vw, 22px);
   letter-spacing: 0.3px;
-  white-space: nowrap;
   transition: filter 0.18s ease, transform 0.12s ease;
 }
 

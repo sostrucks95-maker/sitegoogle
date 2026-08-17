@@ -24,8 +24,10 @@ function Hero() {
 
       <div className="hero__content">
         <h1 className="hero__subtitle">
-          Atendimento rápido para caminhões que quebraram na estrada em{" "}
-          <span className="accent">Jundiaí e região.</span>
+          Atendimento rápido para caminhões em{" "}
+          <span className="accent">
+            Jundiaí, Várzea Paulista, Campo Limpo Paulista e região.
+          </span>
         </h1>
 
         <a

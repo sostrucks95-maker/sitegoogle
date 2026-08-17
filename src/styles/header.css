@@ -1,0 +1,82 @@
+/* ==========================================================================
+   SOS Truck — Cabeçalho
+   Header sobreposto ao hero (logo + menu)
+   ========================================================================== */
+
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0;
+}
+
+.logo img {
+  height: 44px;
+  width: auto;
+  user-select: none;
+}
+
+.menu {
+  position: relative;
+}
+
+.menu__toggle {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border-radius: 8px;
+}
+
+.menu__bar {
+  display: block;
+  width: 30px;
+  height: 3.5px;
+  border-radius: 3px;
+  background: var(--cor-vermelho);
+  box-shadow: 0 0 6px var(--cor-vermelho-sombra);
+}
+
+.menu__panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 172px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  background: var(--cor-preto-secundario);
+  border: 1px solid rgba(227, 6, 19, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.menu__link {
+  display: block;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-family: var(--fonte-corpo);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cor-branco);
+}
+
+.menu__link:hover {
+  background: rgba(227, 6, 19, 0.12);
+  color: var(--cor-vermelho);
+}
+
+.menu__toggle:focus-visible,
+.menu__link:focus-visible {
+  outline: 2px solid var(--cor-vermelho);
+  outline-offset: 2px;
+}

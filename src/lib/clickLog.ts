@@ -1,0 +1,119 @@
+/* ==========================================================================
+   SOS Truck — Log de cliques para Google Sheets (via Apps Script Web App)
+   Envia sinais úteis de cada clique de CTA para uma planilha, ajudando na
+   análise de fraude de anúncios. Não bloqueia a navegação (usa sendBeacon).
+   Veja o passo a passo em docs/rastreamento-cliques.md
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ CONFIG */
+
+// 1) Cole aqui a URL do Web App do Apps Script (após o deploy), DA PLANILHA
+//    DO SOS TRUCK — não reaproveitar a URL de outro cliente.
+//    Enquanto estiver vazio, o log fica DESATIVADO (nenhuma chamada é feita).
+const CLICK_LOG_ENDPOINT = "";
+
+// 2) Buscar o IP do visitante por um serviço externo (api.ipify.org)?
+const COLLECT_IP = true;
+
+import { getDeviceHash } from "./fingerprint";
+
+/* ------------------------------------------------------------------ ESTADO */
+
+let cachedIp = "";
+
+/* ---------------------------------------------------------------- HELPERS */
+
+function param(name: string): string {
+  try {
+    return new URLSearchParams(window.location.search).get(name) ?? "";
+  } catch {
+    return "";
+  }
+}
+
+/** Id persistente por dispositivo — ajuda a detectar cliques repetidos. */
+export function getVisitorId(): string {
+  try {
+    const key = "st_visitor_id";
+    let id = localStorage.getItem(key);
+    if (!id) {
+      id =
+        typeof crypto !== "undefined" && "randomUUID" in crypto
+          ? crypto.randomUUID()
+          : String(Date.now()) + String(Math.random()).slice(2);
+      localStorage.setItem(key, id);
+    }
+    return id;
+  } catch {
+    return "";
+  }
+}
+
+/* ------------------------------------------------------------------- API */
+
+/** Chamar uma vez ao carregar a página (busca o IP em segundo plano). */
+export function initClickLog(): void {
+  if (!CLICK_LOG_ENDPOINT || !COLLECT_IP) return;
+  fetch("https://api.ipify.org?format=json")
+    .then((r) => r.json())
+    .then((d: { ip?: string }) => {
+      cachedIp = d.ip ?? "";
+    })
+    .catch(() => {
+      cachedIp = "";
+    });
+}
+
+/** Registra um clique de CTA na planilha (fire-and-forget). */
+export function logClick(ctaName: string): void {
+  if (!CLICK_LOG_ENDPOINT) return;
+  try {
+    const nav = navigator as Navigator & {
+      deviceMemory?: number;
+    };
+
+    const payload = {
+      ts: new Date().toISOString(),
+      cta: ctaName,
+      visitor_id: getVisitorId(),
+      device_hash: getDeviceHash(),
+      ip: cachedIp,
+      gclid: param("gclid"),
+      gbraid: param("gbraid"),
+      wbraid: param("wbraid"),
+      utm_source: param("utm_source"),
+      utm_medium: param("utm_medium"),
+      utm_campaign: param("utm_campaign"),
+      utm_term: param("utm_term"),
+      utm_content: param("utm_content"),
+      page: window.location.href,
+      referrer: document.referrer,
+      user_agent: nav.userAgent,
+      language: nav.language,
+      platform: nav.platform,
+      screen: `${window.screen.width}x${window.screen.height}`,
+      viewport: `${window.innerWidth}x${window.innerHeight}`,
+      dpr: window.devicePixelRatio,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      cores: nav.hardwareConcurrency ?? "",
+      memory: nav.deviceMemory ?? "",
+    };
+
+    const body = JSON.stringify(payload);
+    if (typeof navigator.sendBeacon === "function") {
+      navigator.sendBeacon(
+        CLICK_LOG_ENDPOINT,
+        new Blob([body], { type: "text/plain;charset=UTF-8" })
+      );
+    } else {
+      void fetch(CLICK_LOG_ENDPOINT, {
+        method: "POST",
+        body,
+        keepalive: true,
+        headers: { "Content-Type": "text/plain;charset=UTF-8" },
+      }).catch(() => {});
+    }
+  } catch {
+    /* nunca quebrar o clique por causa do log */
+  }
+}

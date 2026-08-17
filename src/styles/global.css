@@ -1,0 +1,102 @@
+/* ==========================================================================
+   SOS Truck — CSS global
+   Reset + variáveis de identidade visual + shell principal
+   ========================================================================== */
+
+:root {
+  --cor-fundo: #0d0d0d;
+  --cor-preto-secundario: #1f1f1f;
+  --cor-vermelho: #e30613;
+  --cor-vermelho-escuro: #a30410;
+  --cor-vermelho-sombra: rgba(227, 6, 19, 0.45);
+  --cor-branco: #ffffff;
+  --cor-cinza-texto: #a7a7a7;
+  --cor-cinza-borda: #3a3a3a;
+  --cor-card: #1f1f1f;
+
+  --fonte-titulo: "Raleway", Arial, sans-serif;
+  --fonte-corpo: "Raleway", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  background: var(--cor-fundo);
+  color: var(--cor-branco);
+  font-family: var(--fonte-corpo);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-shell {
+  width: 100%;
+  max-width: 520px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--cor-fundo);
+  overflow: hidden;
+  position: relative;
+}

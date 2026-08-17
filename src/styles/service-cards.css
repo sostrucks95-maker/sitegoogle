@@ -1,0 +1,71 @@
+/* ==========================================================================
+   SOS Truck — Cards de benefícios
+   2x2 grid: segurança, atendimento rápido, força e resistência, cobertura
+   ========================================================================== */
+
+.service-cards {
+  padding: 4px 16px 8px;
+}
+
+.service-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 20px 10px;
+  background: var(--cor-card);
+  border: 1px solid var(--cor-cinza-borda);
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+}
+
+.card[data-reveal]:nth-child(2) {
+  transition-delay: 0.06s;
+}
+
+.card[data-reveal]:nth-child(3) {
+  transition-delay: 0.12s;
+}
+
+.card[data-reveal]:nth-child(4) {
+  transition-delay: 0.18s;
+}
+
+.card__icon {
+  width: 36px;
+  height: 36px;
+  color: var(--cor-vermelho);
+}
+
+.card__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.card__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 900;
+  color: var(--cor-branco);
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: 0.1px;
+  font-size: clamp(13px, 3.8vw, 17px);
+  overflow-wrap: break-word;
+  margin: 0;
+}
+
+.card__desc {
+  font-family: var(--fonte-corpo);
+  color: #e1e1e1;
+  font-size: clamp(11px, 3vw, 13px);
+  line-height: 1.32;
+  margin: 0;
+}

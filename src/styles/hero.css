@@ -1,0 +1,217 @@
+/* ==========================================================================
+   SOS Truck — Hero principal
+   Logo em destaque + título + subtítulo + botões + benefícios
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  width: 100%;
+  padding-bottom: 26px;
+}
+
+.hero__media {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    ellipse at center,
+    var(--cor-preto-secundario) 0%,
+    var(--cor-fundo) 70%
+  );
+}
+
+.hero__img {
+  width: 78%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.6));
+}
+
+.hero__gradient-bottom {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 200px;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 13, 13, 0) 0%,
+    rgba(13, 13, 13, 0.65) 45%,
+    rgba(13, 13, 13, 0.95) 78%,
+    #0d0d0d 100%
+  );
+  pointer-events: none;
+}
+
+.hero__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    220px 220px at 50% 55%,
+    var(--cor-vermelho-sombra),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  margin-top: -70px;
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__title {
+  font-family: var(--fonte-titulo);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.5px;
+  font-size: clamp(48px, 15vw, 72px);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.9);
+  margin: 0;
+}
+
+.hero__title-sos {
+  color: var(--cor-vermelho);
+}
+
+.hero__title-truck {
+  color: var(--cor-branco);
+  margin-left: 0.12em;
+}
+
+.hero__subtitle {
+  margin: 14px auto 0;
+  max-width: 360px;
+  font-family: var(--fonte-corpo);
+  font-size: clamp(16px, 4.6vw, 19px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--cor-branco);
+}
+
+.hero__subtitle .accent {
+  color: var(--cor-vermelho);
+}
+
+.hero__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--cor-branco);
+}
+
+.hero__btn svg {
+  flex: 0 0 auto;
+}
+
+.hero__btn--whatsapp {
+  width: 72%;
+  height: 58px;
+  margin: 22px auto 0;
+  padding: 0 16px;
+  font-size: clamp(17px, 5vw, 22px);
+  letter-spacing: 0.4px;
+  border-radius: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(180deg, var(--cor-vermelho) 0%, var(--cor-vermelho-escuro) 100%);
+  transition: filter 0.18s ease, transform 0.12s ease;
+}
+
+.hero__btn--whatsapp svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (hover: hover) {
+  .hero__btn--whatsapp:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+}
+
+.hero__btn--whatsapp:active {
+  transform: scale(0.985);
+}
+
+.hero__btn--call {
+  width: 72%;
+  height: 58px;
+  margin-top: 14px;
+  padding: 0 16px;
+  font-size: clamp(17px, 5vw, 22px);
+  letter-spacing: 0.4px;
+  border-radius: 12px;
+  border: 2px solid var(--cor-vermelho);
+  background: #000000;
+  transition: transform 0.12s ease, filter 0.18s ease;
+}
+
+.hero__btn--call svg {
+  width: 22px;
+  height: 22px;
+  color: var(--cor-vermelho);
+}
+
+@media (hover: hover) {
+  .hero__btn--call:hover {
+    filter: brightness(1.12);
+  }
+}
+
+.hero__btn--call:active {
+  transform: scale(0.985);
+}
+
+.hero__btn:focus-visible {
+  outline: 2px solid var(--cor-branco);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__btn--whatsapp,
+  .hero__btn--call {
+    transition: none;
+  }
+
+  .hero__btn--whatsapp:hover,
+  .hero__btn--whatsapp:active,
+  .hero__btn--call:active {
+    transform: none;
+  }
+}
+
+.hero__benefits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 18px;
+  padding: 0 4px;
+  font-family: var(--fonte-corpo);
+  font-size: clamp(10px, 3.05vw, 14px);
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: var(--cor-cinza-texto);
+}
+
+.hero__benefits-dot {
+  flex: 0 0 auto;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--cor-vermelho);
+}

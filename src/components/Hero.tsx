@@ -23,15 +23,10 @@ function Hero() {
       </div>
 
       <div className="hero__content">
-        <h1 className="hero__title">
-          <span className="hero__title-sos">SOS</span>
-          <span className="hero__title-truck">TRUCK</span>
-        </h1>
-
-        <p className="hero__subtitle">
+        <h1 className="hero__subtitle">
           Atendimento rápido para caminhões que quebraram na estrada em{" "}
           <span className="accent">Jundiaí e região.</span>
-        </p>
+        </h1>
 
         <a
           id="cta-whatsapp-hero"
